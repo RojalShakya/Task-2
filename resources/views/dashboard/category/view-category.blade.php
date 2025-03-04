@@ -8,50 +8,52 @@
         <p class="card-description">
           View,Edit,Delete Category
         </p>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+         @elseif(session('error'))
+            <div class="alert alert-danger">
+                {{session('error')}}
+            </div>
+         @endif
         <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>S.N</th>
-                <th>Category</th>
-                <th>Parent Category</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($categories as $category)
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>S.N</th>
+                        <th colspan="2">Category</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($categories as $index => $category)
+                        @if ($category->parent_id == null)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td colspan="2">{{ $category->category_name }}</td>
+                                <td>
+                                    <a href=""><button class="btn btn-primary">Edit</button></a>
 
-                {{-- <tr>
-                  <td>{{$loop->iteration}}</td>
-                  @if ($category->parent_id==null)
-                  <td>{{$category->category_name}}</td>
-                  <td>--</td>
-                  @else
-                  <td>{{$category->category_name}}</td>
-                  <td>{{$category->parent->category_name}}</td>
+                                    <a href="{{route('category.destroy',['ids'=>$category->id])}}"><button class="btn btn-danger">Delete</button></a>
+                                </td>
+                            </tr>
 
-                  @endif
-                  <td><a href=""><button class="btn btn-primary">Edit</button>
-                  <a href=""><button class="btn btn-danger">Delete</button></td>
-                </tr> --}}
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$category->category_name}}
-
-                    @foreach ($category->child as $sub)
-
-                        {{$sub->category_name}}
-
-                        @endforeach
-                    </td>
-
-
-                </tr>
-
-                @endforeach
-
-            </tbody>
-          </table>
+                            @foreach ($category->child as $sub)
+                                <tr>
+                                    <td></td>
+                                    <td>{{ $sub->category_name }}</td>
+                                    <td></td>
+                                    <td>
+                                        <a href=""><button class="btn btn-primary">Edit</button></a>
+                                        <a href="{{route('category.destroy',['ids'=>$sub->id])}}"><button class="btn btn-danger">Delete</button></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
         </div>
       </div>
     </div>
