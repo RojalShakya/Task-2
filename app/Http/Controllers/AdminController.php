@@ -19,7 +19,7 @@ class AdminController extends Controller
         return view('admin.userdashboard');
     }
     public function verification(){
-        return view('admin.userdashboard');
+        return view('admin.unverified');
     }
     public function updateStatus(Request $request)
     {

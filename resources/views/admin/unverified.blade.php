@@ -1,6 +1,6 @@
 
 @extends('dashboard.layouts.main')
 @section('content')
-Verified User
+Unverified user
 
 @endsection
