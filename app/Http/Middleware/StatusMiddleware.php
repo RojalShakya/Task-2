@@ -19,7 +19,11 @@ class StatusMiddleware
 
         if(Auth::user()->role!='admin'&& Auth::user()->status=='inactive'){
             return redirect()->route('verification');
+        }elseif(Auth::user()->role=='user'&& Auth::user()->status=='active'){
+            return redirect()->route('frontend-home');
         }
+
+
         return $next($request);
     }
 }

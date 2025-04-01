@@ -6,25 +6,34 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Add Product</h4>
-
-
-          <form class="forms-sample" action="{{route('store')}}" method="POST">
+          <form class="forms-sample" action="{{route('create-product')}}" method="POST" enctype="multipart/form-data">
             @csrf
+            {{$errors}}
             <div class="form-group">
-              <label for="name">Title</label>
-              <input type="text" class="form-control" name="category_name" placeholder="Name" value="{{old('title')}}">
-              @error('title')
+              <label for="name">Product Name</label>
+              <input type="text" class="form-control" name="product" placeholder="Name" value="{{old('product')}}">
+              @error('product')
                   <span class="text-danger">{{$message}} </span>
               @enderror
             </div>
             <div class="form-group">
                 <label>Category</label>
-                <select class="js-example-basic-single w-100" name="category_id" >
+                <select class="form-control" name="category_id">
                     <option value="" selected disabled>Select Option</option>
-                    @foreach ($categories as $category)
-                    <option value={{$category->id}}>{{$category->title}}</option>
-                    @endforeach
+
+                    @forelse ($categories as $category)
+                    <optgroup label="{{$category->category_name}}" >
+                        @if ($category->child->count() > 0)
+                            @foreach ($category->child as $child)
+                                <option value="{{ $child->id }}">{{ $child->category_name }}</option>
+                            @endforeach
+                        @endif
+                    </optgroup>
+                    @empty
+                        <option value="" disabled>No categories available</option>
+                    @endforelse
                 </select>
+
                 @error('category_id')
                 <span class="text-danger">{{$message}} </span>
             @enderror
@@ -35,39 +44,33 @@
               @error('price')
               <span class="text-danger">{{$message}} </span>
           @enderror
-            </div>
-            <div class="form-group">
-                <label for="status">Available</label>
-                <input type="checkbox" class="form-control" name="status" value="1" {{ old('status', $product->status ?? false) ? 'checked' : '' }}>
-            </div>
-*
-            <div class="form-group">
-                <label for="qunatity">Quantity</label>
-                <input type="number" class="form-control" name="quantity" placeholder="Enter quantity" min="1">
-                @error('quantity')
-                <span class="text-danger">{{$message}} </span>
-            @enderror
-              </div>
-            <div class="form-group">
-                <label for="order">Order</label>
-              <input type="integer" class="form-control" name="order">
-              @error('order')
+        </div>
+          <div class="form-group">
+              <label for="qunatity">Quantity</label>
+              <input type="number" class="form-control" name="quantity" placeholder="Enter quantity" min="1">
+              @error('quantity')
               <span class="text-danger">{{$message}} </span>
           @enderror
-              </div>
-
-
-
-            {{-- <div class="form-group">
+            </div>
+            <div class="form-group">
                 <label for="image">File upload</label>
-                <input type="file" name="image_upload" class="file-upload-default">
+                <input type="file" name="image" class="file-upload-default">
                 <div class="input-group col-xs-12">
                   <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                   <span class="input-group-append">
                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                   </span>
                 </div>
-              </div> --}}
+              </div>
+            <div class="form-group">
+                <label for="status">Available</label>
+                <input type="checkbox" class="form-control" name="status" value="1" {{ old('status', $product->status ?? false) ? 'checked' : '' }}>
+            </div>
+
+<div class="form-group">
+    <label for="desc">Description</label>
+    <textarea class="form-control" id="myeditorinstance" name="description" rows="4"></textarea>
+  </div>
 
             <button type="submit" class="btn btn-primary mr-2">Submit</button>
             <button class="btn btn-light">Cancel</button>

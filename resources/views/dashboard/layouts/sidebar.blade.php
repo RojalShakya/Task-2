@@ -27,9 +27,8 @@
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            {{-- <li class="nav-item"> <a class="nav-link" href="{{route('showcategory')}}">View Category</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('category')}}">Create Category</a></li> --}}
-            {{-- <li class="nav-item"> <a class="nav-link" href="{{route('showblog')}}">View Blogs</a></li> --}}
+            <li class="nav-item"> <a class="nav-link" href="{{route('view-category')}}">View Category</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('create-category')}}">Create Category</a></li>
              </ul>
         </div>
       </li>
@@ -41,8 +40,8 @@
         </a>
         <div class="collapse" id="auth">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Show User </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('dashboard')}}"> Show User </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('register')}}"> Register </a></li>
           </ul>
         </div>
       </li>
