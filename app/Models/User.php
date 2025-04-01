@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -33,6 +34,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function review(){
+        return $this->hasMany(Review::class);
+    }
     /**
      * Get the attributes that should be cast.
      *
