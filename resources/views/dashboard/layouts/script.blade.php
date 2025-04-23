@@ -17,4 +17,6 @@
      toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
    });
 </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+@yield('script')
 

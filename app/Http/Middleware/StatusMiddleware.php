@@ -16,14 +16,20 @@ class StatusMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if(Auth::user()->role!='admin'&& Auth::user()->status=='inactive'){
+        if(Auth::check()){
+        foreach(Auth::user()->roles as $role)
+      {  if($role->name=='User'){
+            dd('x');
             return redirect()->route('verification');
-        }elseif(Auth::user()->role=='user'&& Auth::user()->status=='active'){
+
+        }elseif($role->name=='Customer'){
             return redirect()->route('frontend-home');
         }
+      }
+    }else{
+        return abort(401);
+    }
 
-
-        return $next($request);
+      return $next($request);
     }
 }

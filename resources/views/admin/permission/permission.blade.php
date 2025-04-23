@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-    <h2>Admin Panel - User Management</h2>
+    <h2>Admin Panel - Permission Management</h2>
 
     @if(session('message'))
         {{-- <div class="alert alert-success">{{ session('success') }}</div> --}}
