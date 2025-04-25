@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RolePermissionValidation;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Requests\RolePermissionValidation;
 
 class PermissionController extends Controller
 {
@@ -62,7 +63,13 @@ class PermissionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $permission=Permission::getPermission();
+        $data['role']=Role::findOrFail($id);
+        $data['getPermission']=$permission;
+        $data['rolePermission']=$data['role']->permissions->pluck('name')->toarray();
+        return view('admin.permission.edit',$data);
+
     }
 
     /**
@@ -71,6 +78,16 @@ class PermissionController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        $role=Role::findOrFail($id);
+        $request->validate([
+            'name'=>'required',
+            Rule::unique('roles')->ignore($role->id),
+        ]);
+        $role->update($request->all());
+        $role->permissions()->sync($request->permission_id);
+        return redirect()->route('permission.index');
+
     }
 
     /**

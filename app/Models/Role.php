@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Role extends Model
 {
     //
-    protected $guarded=false;
-    protected $fillable=['name','slug'];
+    protected $guarded=['id'];
+    // protected $fillable=['name','slug'];
     public function users():BelongsToMany{
         return $this->belongsToMany(User::class);
     }

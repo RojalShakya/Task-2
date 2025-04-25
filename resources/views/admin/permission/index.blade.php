@@ -41,7 +41,7 @@
                     <tr>
                         <td>{{ ucfirst($role->name) }}</td>
                         <td>
-                            <a href=""><button class="btn btn-primary">Edit</button></a>
+                            <a href="{{route('permission.edit',$role->id)}}"><button class="btn btn-primary">Edit</button></a>
                             <form id="status-form" action="{{ route('permission.destroy', $role->id) }}" method="POST"
                                 class="d-inline">
                                 @method('DELETE')
