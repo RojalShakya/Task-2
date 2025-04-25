@@ -34,6 +34,6 @@ class ProductReceipt implements ShouldQueue
     public function handle(): void
     {
 
-    Mail::to("rojal@yopmail.com")->send(new ProductMail($this->product));
+    Mail::to(Auth::user()->email)->send(new ProductMail($this->product));
 
 }}

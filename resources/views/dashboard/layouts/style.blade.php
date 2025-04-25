@@ -12,3 +12,4 @@
   <link rel="shortcut icon" href="{{asset('backend/images/favicon.png')}}" />
   {{-- <link rel="stylesheet" href="{{asset('backend/vendors/select2/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('backend/vendors/select2-bootstrap-theme/select2-bootstrap.min.css')}}"> --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">

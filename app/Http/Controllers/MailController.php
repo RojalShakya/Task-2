@@ -14,7 +14,7 @@ class MailController extends Controller
     public function sendEmail($id){
 
         $product=Product::findOrFail($id);
-
+        // dd(Auth::user()->email);
         // Mail::to(Auth::user()->email)->send(new ProductMail($product));
 
         ProductReceipt::dispatch($product);

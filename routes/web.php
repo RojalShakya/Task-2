@@ -5,6 +5,7 @@ use App\Http\Controllers\ArrayController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,12 @@ Route::group(['middleware'=>['check.status']],function(){
     Route::get('/admin',[AdminController::class,'index'])->name('dashboard');
     Route::get('/user-dashboard',[AdminController::class,'userindex'])->name('user-dashboard');
     Route::post('/update-status',[AdminController::class,'updateStatus'])->name('update-status');
+    Route::post('/update-role/{user}',[AdminController::class,'assignRole'])->name('update-role');
     Route::get('/verified',[AdminController::class,'userindex'])->name('verified');
+    Route::get('/permission',[AdminController::class,'showPermission'])->name('permission');
 });
+// Route::get('/create/permission',[PermissionController::class,'create'])->name('create-permission');
+Route::resource('permission',PermissionController::class);
 Route::get('/verification',[AdminController::class,'verification'])->name('verification');
 
 Route::middleware('auth')->group(function () {
@@ -56,5 +61,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
+Route::get('/large',[ArrayController::class,'secondLargest']);
+Route::get('/large',[ArrayController::class,'checkValue']);
 require __DIR__.'/auth.php';

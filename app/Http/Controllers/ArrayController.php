@@ -251,4 +251,64 @@ public function checkEmail(){
     return $valid;
 }
 
+
+//  public function uniqueIdentify($array) {
+//     $unique = [];
+//     $new=[];
+//     foreach ($array as $item) {
+
+//        if(isset($unique[$item])){
+//         continue;
+//        }
+
+//         $unique[$item]=1;
+//     }
+//     return $unique;
+
+// }
+public function uniqueIdentify($array) {
+    $seen = [];
+    $unique = [];
+
+    foreach ($array as $item) {
+        if (isset($seen[$item])) {
+           continue;
+        }
+        $seen[$item]=true;
+        $unique[]=$item;
+    }
+
+    return $unique;
+}
+
+public function checkValue(){
+    $array=[10];
+    $value=$this->uniqueIdentify($array);
+    echo($value);
+
+}
+// public function secondlargest(){
+//     $unique=$this->uniqueIdentify();
+//     $max=null;
+//     $secondMax=null;
+//     if(count($unique)<2){
+//         return null;
+//     }
+//     foreach($unique as $num){
+//         if($num>$max){
+//             $secondMax=$max;
+//             $max=$num;
+//         }elseif($num> $secondMax && $num!==$max){
+//             $secondMax=$num;
+//         }
+//     }
+
+
+//     echo $secondMax;
+// }
+
+
+
+
+
 }

@@ -32,6 +32,7 @@
              </ul>
         </div>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
           <i class="icon-head menu-icon"></i>
@@ -39,9 +40,25 @@
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="auth">
-          <ul class="nav flex-column sub-menu">
+            <ul class="nav flex-column sub-menu">
+
             <li class="nav-item"> <a class="nav-link" href="{{route('dashboard')}}"> Show User </a></li>
             <li class="nav-item"> <a class="nav-link" href="{{route('register')}}"> Register </a></li>
+
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#permission" aria-expanded="false" aria-controls="permission">
+          <i class="icon-head menu-icon"></i>
+          <span class="menu-title">Permissions</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="permission">
+            <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{route('permission.index')}}"> Show Permissions </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('permission.create')}}"> Create Permission</a></li>
           </ul>
         </div>
       </li>
